@@ -13,13 +13,13 @@ const data = [
 		id: '123',
 		icon: 'home',
 		location: 'Home',
-		destination: 'Code Street London, UK',
+		destination: 'This is my home, AU',
 	},
 	{
 		id: '456',
 		icon: 'briefcase',
 		location: 'Work',
-		destination: 'London Eye, London, UK',
+		destination: 'This is my workplace, AU',
 	},
 ];
 const NavFavourites = () => {
