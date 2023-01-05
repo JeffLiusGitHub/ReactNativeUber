@@ -1,5 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+	StyleSheet,
+	Text,
+	View,
+	KeyboardAvoidingView,
+	Platform,
+} from 'react-native';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import HomeScreen from './screens/HomeScreen';
@@ -10,34 +15,36 @@ import MapScreen from './screens/MapScreen';
 import EatsScreen from './screens/EatsScreen';
 
 export default function App() {
-	const Stack = createNativeStackNavigator();
 
+	const Stack = createNativeStackNavigator();
+	// console.log(Platform.OS);
 	return (
 		<Provider store={store}>
 			<NavigationContainer>
 				<SafeAreaProvider>
-					<Stack.Navigator>
-						<Stack.Screen
-							name="HomeScreen"
-							component={HomeScreen}
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen
-							name="MapScreen"
-							component={MapScreen}
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen
-							name="EatsScreen"
-							component={EatsScreen}
-							options={{ headerShown: false }}
-						/>
-					</Stack.Navigator>
-					<View
-					//  style={styles.container}
+					<KeyboardAvoidingView
+						behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+						style={{ flex: 1 }}
+						keyboardVerticalOffset={Platform.OS === 'ios' ? -124 : 0}
 					>
-						{/* <HomeScreen /> */}
-					</View>
+						<Stack.Navigator>
+							<Stack.Screen
+								name="HomeScreen"
+								component={HomeScreen}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="MapScreen"
+								component={MapScreen}
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name="EatsScreen"
+								component={EatsScreen}
+								options={{ headerShown: false }}
+							/>
+						</Stack.Navigator>
+					</KeyboardAvoidingView>
 				</SafeAreaProvider>
 			</NavigationContainer>
 		</Provider>
